@@ -259,6 +259,8 @@ def start_info_actions(info, params):
     elif info == "openinfodialog":
         if xbmc.getCondVisibility("System.HasActiveModalDialog"):
             container_id = ""
+        elif xbmc.getCondVisibility("System.HasModalDialog"):
+            container_id = ""
         else:
             container_id = "Container(%s)" % utils.get_infolabel("System.CurrentControlId")
         dbid = utils.get_infolabel("%sListItem.DBID" % container_id)
