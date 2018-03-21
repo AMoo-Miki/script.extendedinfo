@@ -3,6 +3,9 @@
 # Copyright (C) 2015 - Philipp Temminghoff <phil65@kodi.tv>
 # This program is Free Software see LICENSE file for details
 
+from __future__ import unicode_literals
+from __future__ import absolute_import
+
 import re
 import urllib
 
@@ -1049,6 +1052,8 @@ def get_rated_media_items(media_type, sort_by=None, page=1, cache_days=0):
         data = get_data(url="guest_session/%s/rated/%s" % (session_id, media_type),
                         params=params,
                         cache_days=0)
+    if not data.get("results"):
+        utils.notify("Nothing rated yet")
     if media_type == "tv/episodes":
         itemlist = handle_episodes(data["results"])
     elif media_type == "tv":
